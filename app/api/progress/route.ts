@@ -22,13 +22,20 @@ export async function GET(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ ok: false, message: 'Unauthenticated' }, { status: 401 });
   }
-  await connectToDatabase();
-  const doc = await Progress.findOne({ userId: user.uid }).lean();
-  const entries = doc?.entries ? Object.fromEntries(doc.entries as any) : {};
-  return NextResponse.json({
-    ok: true,
-    data: { entries, updatedAt: doc?.updatedAt ?? null },
-  });
+  try {
+    await connectToDatabase();
+    const doc = await Progress.findOne({ userId: user.uid }).lean({ flattenMaps: true });
+    const raw = (doc?.entries ?? {}) as unknown;
+    const entries =
+      raw instanceof Map ? Object.fromEntries(raw) : (raw as Record<string, unknown>);
+    return NextResponse.json({
+      ok: true,
+      data: { entries, updatedAt: doc?.updatedAt ?? null },
+    });
+  } catch (e) {
+    console.error('progress GET error:', e);
+    return NextResponse.json({ ok: false, message: 'Server error' }, { status: 500 });
+  }
 }
 
 export async function PUT(req: NextRequest) {
@@ -47,11 +54,16 @@ export async function PUT(req: NextRequest) {
     entries[k] = { td: !!v.td, bu: !!v.bu, note: v.note ?? '' };
   }
 
-  await connectToDatabase();
-  const doc = await Progress.findOneAndUpdate(
-    { userId: user.uid },
-    { $set: { entries } },
-    { upsert: true, new: true }
-  );
-  return NextResponse.json({ ok: true, data: { updatedAt: doc.updatedAt } });
+  try {
+    await connectToDatabase();
+    const doc = await Progress.findOneAndUpdate(
+      { userId: user.uid },
+      { $set: { entries } },
+      { upsert: true, new: true }
+    );
+    return NextResponse.json({ ok: true, data: { updatedAt: doc?.updatedAt ?? null } });
+  } catch (e) {
+    console.error('progress PUT error:', e);
+    return NextResponse.json({ ok: false, message: 'Server error' }, { status: 500 });
+  }
 }
