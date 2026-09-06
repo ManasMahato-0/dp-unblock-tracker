@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(npx next *)",
-      "Bash(echo \"BUILD $?\")",
-      "Bash(git commit *)"
-    ]
-  }
-}
