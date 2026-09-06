@@ -34,7 +34,8 @@ export async function POST(req: NextRequest) {
     const res = NextResponse.json({ ok: true });
     res.cookies.set(TOKEN_COOKIE, token, cookieOptions);
     return res;
-  } catch {
+  } catch (e) {
+    console.error('signup error:', e);
     return NextResponse.json({ ok: false, message: 'Server error' }, { status: 500 });
   }
 }
