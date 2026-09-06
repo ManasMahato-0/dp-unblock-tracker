@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { PLAN, allProbs, TOTAL } from '@/lib/plan';
+import { PLAN, allProbs, TOTAL, lcUrl, ncUrl } from '@/lib/plan';
 import type { Entries } from '@/types';
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'error';
@@ -232,18 +232,35 @@ export default function TrackerClient({ email }: { email: string }) {
             <span className="tag">{w.tag}</span>
           </div>
           <p className="week-goal">{w.goal}</p>
-          {w.probs.map(([code, name, pat]) => {
+          {w.probs.map((p) => {
+            const { code, name, pattern } = p;
             const s = entries[code];
             const st = probState(s);
             const codeLabel = code === 'MCM' ? 'MCM' : `LC ${code}`;
             const noteOpen = !!openNotes[code];
+            const nc = ncUrl(p);
             return (
               <div className="prob" data-state={st} key={code}>
-                <span className="code mono">{codeLabel}</span>
+                <a
+                  className="code mono"
+                  href={lcUrl(p)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {codeLabel}
+                </a>
                 <span className="name">
                   {name}
                   {s?.note ? <span className="has-note">NOTE</span> : null}
-                  <span className="pat">{pat}</span>
+                  <span className="pat">
+                    {nc ? (
+                      <a href={nc} target="_blank" rel="noopener noreferrer">
+                        {pattern}
+                      </a>
+                    ) : (
+                      pattern
+                    )}
+                  </span>
                 </span>
                 <span className="toggles">
                   <button

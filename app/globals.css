@@ -60,9 +60,12 @@ header p{margin:0;color:var(--muted);font-size:14.5px}
 }
 .prob[data-state="one"]{border-left-color:var(--td)}
 .prob[data-state="done"]{border-left-color:var(--gold);background:var(--gold-soft)}
-.prob .code{font-size:12.5px;color:var(--muted);min-width:58px;flex-shrink:0}
+.prob .code{font-size:12.5px;color:var(--muted);min-width:58px;flex-shrink:0;text-decoration:none;border-bottom:1px dotted transparent}
+.prob a.code:hover{color:var(--td);border-bottom-color:var(--td)}
 .prob .name{flex:1;font-size:14.5px;font-weight:550;min-width:0}
 .prob .name .pat{display:block;font-size:11.5px;color:var(--muted);font-weight:450;margin-top:1px}
+.prob .name .pat a{color:inherit;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+.prob .name .pat a:hover{color:var(--bu)}
 .has-note{font-size:10px;color:var(--td);font-weight:800;margin-left:6px;vertical-align:middle}
 .toggles{display:flex;gap:6px;flex-shrink:0}
 .tog{
