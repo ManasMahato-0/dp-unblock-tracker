@@ -53,6 +53,9 @@ export const PLAN: Week[] = [
     tag: 'One pattern at a time',
     goal: "Don't move on until you solve 2 unseen problems in a pattern with no hints. Log every state definition.",
     probs: [
+      P('KNAPSACK-01', '0/1 Knapsack (Classic)', '0/1 knapsack · the base pattern everything below is built from', 'https://www.geeksforgeeks.org/dsa/0-1-knapsack-problem-dp-10/'),
+      P('ROD-CUTTING', 'Rod Cutting (Classic)', 'unbounded knapsack · cut for max profit', 'https://www.geeksforgeeks.org/dsa/cutting-a-rod-dp-13/'),
+      P('343', 'Integer Break', 'unbounded knapsack · rod-cutting shape (unseen)', 'integer-break'),
       P('416', 'Partition Equal Subset Sum', '0/1 knapsack', 'partition-equal-subset-sum', 'partition-equal-subset-sum'),
       P('494', 'Target Sum', '0/1 knapsack', 'target-sum', 'target-sum'),
       P('1049', 'Last Stone Weight II', '0/1 knapsack', 'last-stone-weight-ii', 'last-stone-weight-ii'),
@@ -88,6 +91,7 @@ export const PLAN: Week[] = [
       P('5', 'Longest Palindromic Substring', 'string · interval-ish', 'longest-palindromic-substring', 'longest-palindromic-substring'),
       P('647', 'Palindromic Substrings', 'string · count palindromes', 'palindromic-substrings', 'palindromic-substrings'),
       P('516', 'Longest Palindromic Subsequence', 'subsequence · interval', 'longest-palindromic-subsequence', 'longest-palindromic-subsequence'),
+      P('1312', 'Minimum Insertion Steps to Make a Palindrome', 'subsequence · interval, LPS\'s twin', 'minimum-insertion-steps-to-make-a-palindrome-string'),
     ],
   },
   {
@@ -106,6 +110,7 @@ export const PLAN: Week[] = [
       P('646', 'Maximum Length of Pair Chain', 'sort + LIS-style / greedy', 'maximum-length-of-pair-chain'),
       P('486', 'Predict the Winner', 'game DP (new shape)', 'predict-the-winner'),
       P('877', 'Stone Game', 'game DP', 'stone-game'),
+      P('1235', 'Maximum Profit in Job Scheduling', 'weighted interval scheduling · sort + binary search + dp (new shape)', 'maximum-profit-in-job-scheduling', 'maximum-profit-in-job-scheduling'),
     ],
   },
   {
@@ -124,6 +129,7 @@ export const PLAN: Week[] = [
       P('698', 'Partition to K Equal Sum Subsets', 'bitmask DP', 'partition-to-k-equal-sum-subsets', 'partition-to-k-equal-sum-subsets'),
       P('10', 'Regular Expression Matching', 'string · 2D', 'regular-expression-matching', 'regular-expression-matching'),
       P('44', 'Wildcard Matching', 'string · 2D', 'wildcard-matching'),
+      P('887', 'Super Egg Drop', 'egg drop puzzle · dp over (eggs, moves) (new shape)', 'super-egg-drop', 'super-egg-drop'),
       P('MCM', 'Matrix Chain Multiplication', 'interval DP', 'https://www.geeksforgeeks.org/dsa/matrix-chain-multiplication-dp-8/'),
     ],
   },

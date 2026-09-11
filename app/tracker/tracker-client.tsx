@@ -236,7 +236,7 @@ export default function TrackerClient({ email }: { email: string }) {
             const { code, name, pattern } = p;
             const s = entries[code];
             const st = probState(s);
-            const codeLabel = code === 'MCM' ? 'MCM' : `LC ${code}`;
+            const codeLabel = /^\d+$/.test(code) ? `LC ${code}` : code;
             const noteOpen = !!openNotes[code];
             const nc = ncUrl(p);
             return (
