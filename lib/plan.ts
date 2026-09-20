@@ -1,9 +1,11 @@
 export interface Problem {
-  code: string; // LC number, or "MCM"
+  code: string; // internal key — LC number, "MCM", or a domain-prefixed id like "g733"
   name: string;
   pattern: string;
-  lc: string; // LC slug, or a full URL for non-LC problems
+  lc: string; // LC slug, or a full URL for non-LC problems (GFG, etc.)
   nc?: string; // NeetCode slug (neetcode.io/problems/<slug>) where a solution exists
+  difficulty?: 'E' | 'M' | 'H'; // used to sort/badge boards that group by pattern
+  display?: string; // explicit code-chip label; falls back to inferring "LC <code>" when unset
 }
 
 export interface Week {
